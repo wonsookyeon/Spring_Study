@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+ 
+ 	<context:component-scan base-package="polymorphism"></context:component-scan>
+ 
+ 
+ 
+ <!--   
+   객체생성
+   <bean id="samtv" class="polymorphism.SamsungTV" lazy-init="true">
+   </bean>                                       요청했을때만 동작
+   
+   <bean id="lgtv" class="polymorphism.LgTV">
+   
+   2. setter이용
+   		<property name="speaker" ref="apple"></property>
+   		<property name="price" value="1200"></property>
+   		
+   1. 생성자이용
+	<constructor-arg index="0" ref="sony"></constructor-arg>
+	          interface Speaker를 받고있기때문에 ref이름만 바꾸어줘도 가능
+	<constructor-arg index="1" value="2500"></constructor-arg>
+   </bean> 
+   
+   
+   <bean id="sony" class="polymorphism.SonySpeaker">
+   </bean>
+   
+   <bean id="apple" class="polymorphism.AppleSpeaker">
+   </bean>
+    -->
+</beans>
