@@ -1,0 +1,158 @@
+preferences->
+1. 폰트설정
+2. enc-> content Types -> text -> 맨아래 빈칸에 utf-8입력
+밑에 다 utf-8 로 설정
+
+톰캣설정
+preferences-> server, runtime environments -> 톰캣9 확인
+
+properties -> Project Facets -> java 체크 , Runtimes-> 톰캣체크
+
+
+pom.xml 파일 12번째 13번째줄 바꾸기
+<java-version>11</java-version>
+<org.springframework-version>5.2.7.RELEASE</org.springframework-version>
+맨밑쪽 바꾸기
+<source>11</source>
+<target>11</target> 
+
+lombok 설치--------------------------
+pom.xml 파일 118번줄 </dependency> 밑에 추가
+<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.28</version>
+    <scope>provided</scope>
+</dependency>
+
+Maven Dependencies 에 lombok 추가되었는지 확인
+
+RunWith 안뜰때 ---------
+pom.xml  test 부분에서 version 4.12로 변경
+pom.xml 31줄  dependency ~ /dependency 까지 복사
+바로밑에 붙여넣기 한 후 
+<artifactId>spring-test</artifactId> test 라고 바꿔주고
+build path -> configureBuildPath->  libraries -> classpath 에 add Library 해서 JUnit4 추가
+
+log4 안뜰때---------------
+pon.xml -> Logging 부분에서
+log4j version -> 1.2.17로 변경 후 밑에 </dependency>전까지 삭제
+
+@Log4j -> log.info(restaurant) 
+@Slf4j -> log.info("restaurant : {}", restaurant);
+
+---------------------------------------------------------------------------------
+
+jdbc 연결-------------------------
+maven oracle 검색 후 복붙하는데
+pom.xml 파일에서 lombok 복붙한 </dependency> 밑에 추가
+<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
+<dependency>
+<groupId>com.oracle.database.jdbc</groupId>
+	<artifactId>ojdbc8</artifactId>
+	<version>23.2.0.0</version>
+</dependency>
+
+커넥션풀 HikariCP -----------------------
+maven oracle 검색 후 복붙하는데
+pom.xml 파일에서 jdbc 복붙한 </dependency> 밑에 추가
+<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+<dependency>
+    <groupId>com.zaxxer</groupId>
+    <artifactId>HikariCP</artifactId>
+    <version>5.0.1</version>
+</dependency>
+
+DB 관련은 root-context.xml에 추가----------------------
+<!-- DB 오라클 연결 -->
+<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	<!-- setter와 이름 일치, 맨앞만 소문자 -->
+    <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+    <property name="username" value="book"></property>
+    <property name="password" value="1234"></property>
+</bean>
+
+<!-- 커넥션 풀 생성 -->
+<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+   <constructor-arg ref="hikariConfig"></constructor-arg>
+/bean>
+
+
+MyBatis 와 스프링연동---------------------------------------------
+pom.xml 31줄  dependency ~ /dependency 까지 복사
+바로밑에 붙여넣기 한 후 
+<artifactId>spring-jdbc</artifactId> jdbc 라고 바꿔주고
+<artifactId>spring-tx</artifactId> tx 라고 바꿔주고
+
+maven mybatis 검색 후 복붙하는데
+pom.xml 파일에서 HikariCP 복붙한 </dependency> 밑에 추가
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.13</version>
+</dependency>
+
+maven mybatis 검색 후 MyBatis Spring » 3.0.0 에서 maven복붙하는데
+pom.xml 파일에서 mybatis 복붙한 </dependency> 밑에 추가
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+root-context.xml에 추가
+<!--  -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"></property>
+</bean>
+
+Namespaces 에서 mybatisSpring 체크 후  Source에
+<mybatis-spring:scan base-package="org.zerock.mapper"/> 추가
+
+maven log4j2 검색 후 Log4Jdbc Log4j2 JDBC 4 1 » 1.16
+<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+<dependency>
+    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+    <version>1.16</version>
+</dependency>
+
+log4jdbc.log4j2.properties 파일생성 후
+log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator 넣기
+
+root-context.xml 에서 DB 오라클 연결 수정
+
+
+
+
+
+경고나오는거 쓸데없이 보여주지마라---------------
+src/test/resources 안애 log4j.xml 에서 추가
+<logger name="jdbc.audit">
+	<level value="warn" />
+</logger>
+	
+<logger name="jdbc.resultset">
+	<level value="warn" />
+</logger>
+	
+<logger name="jdbc.connection">
+	<level value="warn" />
+</logger>
+
+강제 maven update 방법----------------------
+프로그램 우클릭 -> Maven -> Update Project -> 아래 Force Update 체크 OK
+
+
+
+
+
+
+
+
+
+
