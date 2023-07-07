@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.tags.BindErrorsTag;
 import org.zerock.domain.SampleDTO;
@@ -171,8 +172,27 @@ public class sampleController {
 //	http://localhost:8081/sample/ex13/free
 	}
 	
+// ---------- 파일 업로드하기
+	@GetMapping("/upload") 
+	public void upload() {
+		log.info("/exUpload.....");
+	}
 	
-	
+//	
+	@PostMapping("/exUploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		for(MultipartFile file:files) {
+			log.info("-----------------------");
+			log.info("name : {}", file.getOriginalFilename());
+			log.info("size : {}", file.getSize());
+		}
+		
+//		files.forEach(file->{
+//			log.info("-----------------------");
+//			log.info("name : {}", file.getOriginalFilename());
+//			log.info("size : {}", file.getSize());
+//		});
+	}
 	
 	
 }

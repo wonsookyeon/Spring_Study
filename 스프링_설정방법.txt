@@ -16,7 +16,7 @@ pom.xml 파일 12번째 13번째줄 바꾸기
 <source>11</source>
 <target>11</target> 
 
-lombok 설치--------------------------
+★lombok 설치--------------------------
 pom.xml 파일 118번줄 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 <dependency>
@@ -28,7 +28,7 @@ pom.xml 파일 118번줄 </dependency> 밑에 추가
 
 Maven Dependencies 에 lombok 추가되었는지 확인
 
-RunWith 안뜰때 ---------
+RunWith 안뜰 때 ---------
 pom.xml  test 부분에서 version 4.12로 변경
 pom.xml 31줄  dependency ~ /dependency 까지 복사
 바로밑에 붙여넣기 한 후 
@@ -44,9 +44,9 @@ log4j version -> 1.2.17로 변경 후 밑에 </dependency>전까지 삭제
 
 ---------------------------------------------------------------------------------
 
-jdbc 연결-------------------------
+★ojdbc 연결-------------------------
 maven oracle 검색 후 복붙하는데
-pom.xml 파일에서 lombok 복붙한 </dependency> 밑에 추가
+pom.xml 파일에서 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
 <dependency>
 <groupId>com.oracle.database.jdbc</groupId>
@@ -54,9 +54,9 @@ pom.xml 파일에서 lombok 복붙한 </dependency> 밑에 추가
 	<version>23.2.0.0</version>
 </dependency>
 
-커넥션풀 HikariCP -----------------------
+★커넥션풀 HikariCP -----------------------
 maven oracle 검색 후 복붙하는데
-pom.xml 파일에서 jdbc 복붙한 </dependency> 밑에 추가
+pom.xml 파일에서 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
 <dependency>
     <groupId>com.zaxxer</groupId>
@@ -86,8 +86,8 @@ pom.xml 31줄  dependency ~ /dependency 까지 복사
 <artifactId>spring-jdbc</artifactId> jdbc 라고 바꿔주고
 <artifactId>spring-tx</artifactId> tx 라고 바꿔주고
 
-maven mybatis 검색 후 복붙하는데
-pom.xml 파일에서 HikariCP 복붙한 </dependency> 밑에 추가
+★maven mybatis 검색 후 복붙하는데
+pom.xml 파일에서 mybatis 복붙한 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 <dependency>
     <groupId>org.mybatis</groupId>
@@ -95,7 +95,7 @@ pom.xml 파일에서 HikariCP 복붙한 </dependency> 밑에 추가
     <version>3.5.13</version>
 </dependency>
 
-maven mybatis 검색 후 MyBatis Spring » 3.0.0 에서 maven복붙하는데
+★maven mybatis 검색 후 MyBatis Spring » 3.0.0 에서 maven복붙하는데
 pom.xml 파일에서 mybatis 복붙한 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 <dependency>
@@ -113,7 +113,7 @@ root-context.xml에 추가
 Namespaces 에서 mybatisSpring 체크 후  Source에
 <mybatis-spring:scan base-package="org.zerock.mapper"/> 추가
 
-maven log4j2 검색 후 Log4Jdbc Log4j2 JDBC 4 1 » 1.16
+★maven log4j2 검색 후 Log4Jdbc Log4j2 JDBC 4 1 » 1.16
 pom.xml 파일에 복붙
 <!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
 <dependency>
@@ -128,7 +128,7 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator 넣
 root-context.xml 에서 DB 오라클 연결 수정
 
 
-Maven 에서 jackson검색 후  Jackson Databind » 2.15.2
+★Maven 에서 jackson검색 후  Jackson Databind » 2.15.2
 pom.xml 파일에 복붙
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 <dependency>
@@ -136,6 +136,17 @@ pom.xml 파일에 복붙
     <artifactId>jackson-databind</artifactId>
     <version>2.15.2</version>
 </dependency>
+
+파일업로드-------------------------------------------------------------
+★Maven 에서 commons검색 후 Apache Commons FileUpload » 1.5
+pom.xml 파일에 복붙
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.5</version>
+</dependency>
+
 
 
 
