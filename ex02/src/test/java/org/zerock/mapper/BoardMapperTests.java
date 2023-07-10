@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestConstructor;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
 
@@ -19,7 +20,8 @@ public class BoardMapperTests {
 	
 	@Autowired
 	private BoardMapper boardMapper;
-	
+
+//DB에 있는 list 가져오기	
 	@Test
 	public void testGetlist() {
 		//방법1
@@ -33,6 +35,7 @@ public class BoardMapperTests {
 		});
 	}
 	
+//삽입	
 	@Test
 	public void testInsert() {
 		
@@ -47,6 +50,7 @@ public class BoardMapperTests {
 		log.info("result : {}", result);
 	}
 	
+//수정
 	@Test
 	public void testUpdate() {
 		
@@ -61,7 +65,8 @@ public class BoardMapperTests {
 		
 		log.info("result : {}", result);
 	}
-	
+
+//DB 데이터 1건 읽어오기
 	@Test
 	public void testRead() {
 		
@@ -81,6 +86,52 @@ public class BoardMapperTests {
 		
 		log.info("result : {}", result);
 	}
+	
+//삭제
+	@Test
+	public void delete() {
+		BoardVO vo = new BoardVO();
+		
+		int result = boardMapper.delete(10L);
+		log.info("result : {}", result);
+		
+	}
+	
+	@Test
+	public void insert2() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setTitle("java");
+		vo.setContent("핸드폰하는중");
+		vo.setWriter("노예은");
+		
+		int result = boardMapper.insert2(vo);
+		
+		log.info("result : {}", result);
+		
+	}
+	
+	
+	@Test
+	public void update2() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setBno(12L);
+		vo.setTitle("Spring");
+		vo.setContent("공부하는중");
+		vo.setWriter("서연주");
+		
+		int result = boardMapper.update2(vo);
+		log.info("result : {}", result);
+		
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 }

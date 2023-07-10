@@ -16,6 +16,7 @@ pom.xml 파일 12번째 13번째줄 바꾸기
 <source>11</source>
 <target>11</target> 
 
+★★<!--Test--> 에 설지 
 ★lombok 설치--------------------------
 pom.xml 파일 118번줄 </dependency> 밑에 추가
 <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -29,7 +30,7 @@ pom.xml 파일 118번줄 </dependency> 밑에 추가
 Maven Dependencies 에 lombok 추가되었는지 확인
 
 RunWith 안뜰 때 ---------
-pom.xml  test 부분에서 version 4.12로 변경
+pom.xml  test 부분에서 junit -> version 4.12로 변경
 pom.xml 31줄  dependency ~ /dependency 까지 복사
 바로밑에 붙여넣기 한 후 
 <artifactId>spring-test</artifactId> test 라고 바꿔주고

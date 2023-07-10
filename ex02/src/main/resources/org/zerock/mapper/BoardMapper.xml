@@ -40,6 +40,19 @@
   		where bno = #{bno}
   </update>
   
+  <insert id="insert2">
+  	insert into tbl_board (bno, title, content, writer)
+  	values(seq_board.nextval, #{title}, #{content}, #{writer})
+  </insert>
+  
+  <update id="update2">
+  	update tbl_board set title=#{title}, content=#{content}, writer=#{writer} where bno=#{bno}
+  </update>
+  
+  <delete id="delete">
+  	delete from tbl_board where bno=#{bno}
+  </delete>
+  
   
   
 </mapper>
