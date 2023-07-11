@@ -78,7 +78,7 @@ DB 관련은 root-context.xml에 추가----------------------
 <!-- 커넥션 풀 생성 -->
 <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
    <constructor-arg ref="hikariConfig"></constructor-arg>
-/bean>
+</bean>
 
 
 MyBatis 와 스프링연동---------------------------------------------
@@ -178,7 +178,6 @@ src/test/resources 안애 log4j.xml 에서 추가
 / -> HomeController 안에 있는 home 실행
 /sample/ -> SampleController 안 basic() 실행
 /sample/list -> SampleController 안 list() 실행
-
 
 
 

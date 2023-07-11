@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- init-method="init" 초기화 -->
+	<!-- destroy-method="destory"  객체 소멸-->
+	<!-- Samsung tv = new SamsungTV(); 랑 같다. 객체생성 -->
+	<!-- scope="scope" main에서 여려개 객체 생성가능 -->
+	<bean id="tv" class="polymorphism.SamsungTV">
+	
+	    <!-- setter 사용할때 -->
+		<property name="speaker" ref="sony"></property>
+		         <!-- setter의 이름 -->
+		         
+	<!-- 	<constructor-arg ref="apple"></constructor-arg> -->
+		<!-- sony or apple 의 주소값을 가져와서 생성자만들어줌 -->
+	</bean>
+	
+<!--<bean id="tv1" class="polymorphism.SamsungTV"></bean>
+	<bean id="tv2" class="polymorphism.SamsungTV"></bean>
+-->	
+	<bean id="lg" class="polymorphism.LgTV"></bean>
+	
+	<bean id="sony" class="polymorphism.SonySpeaker"></bean>
+	<bean id="apple" class="polymorphism.AppleSpeaker"></bean>
+
+</beans>
