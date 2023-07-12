@@ -27,22 +27,27 @@ public class BoardController {
 		model.addAttribute("list", service.getlist());
 	}
 	
+	@GetMapping("register")
+	public void register() {
+		
+	}
+	
 	@PostMapping("register")
 	public String register(BoardVO vo, RedirectAttributes rttr) {
 		
 		log.info("register : {}", vo);
 		service.register(vo);
 		
-		rttr.addAttribute("result", vo.getBno());
+		rttr.addFlashAttribute("result", vo.getBno());
 		
 		return "redirect:/board/list"; //화면이동
 	}
 	
-	@GetMapping("get")
+	@GetMapping({"/get","/modify"}) //상세페이지
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		            //ControllerTest에서 넘어온 값을 받아서 넘겨줌(정확)
-		log.info("/get : {}", bno);
-		service.get(bno);
+		log.info("/get or /modify : {}", bno);
+		model.addAttribute("board",service.get(bno));
 	}
 	
 	@PostMapping("remove")                              //화면전환이 필요하므로

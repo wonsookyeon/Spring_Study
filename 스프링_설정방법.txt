@@ -179,10 +179,22 @@ src/test/resources 안애 log4j.xml 에서 추가
 /sample/ -> SampleController 안 basic() 실행
 /sample/list -> SampleController 안 list() 실행
 
-
-
-
-
-
-
-
+web.xml 한글 필터 깨짐 방지 ---------------------------------------------------------------
+<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
