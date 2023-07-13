@@ -53,7 +53,7 @@ public class BoardController {
 	@PostMapping("remove")                              //화면전환이 필요하므로
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		log.info("/remove : {}", bno);
-		if(service.remove(bno));{
+		if(service.remove(bno)){
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/board/list";
@@ -62,7 +62,7 @@ public class BoardController {
 	@PostMapping("modify")
 	public String modify(BoardVO vo, RedirectAttributes rttr) {
 		log.info("modify : {}", vo);
-		if(service.modify(vo));{
+		if(service.modify(vo)){
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:/board/list";

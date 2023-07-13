@@ -23,7 +23,7 @@
                             
                             <form role="form" action="/board/register" method="post">
                             	<div class="form-group">
-                            		<label>title</label> <input name="title" class="form-control"> <br>
+                            		<label>Title</label> <input name="title" class="form-control"> <br>
                             	</div>
                             	
                             	<div class="form-group">

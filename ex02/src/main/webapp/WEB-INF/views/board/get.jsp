@@ -7,7 +7,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Board Register</h1>
+                    <h1 class="page-header">Board Read</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -16,7 +16,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Board Register
+                            Board Read Page
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -27,20 +27,24 @@
                             </div>
                             
                             <div class="form-group">
-                            	<label>title</label>
-                            	<input class="form-control" name="title" value="${board.title}">
+                            	<label>Title</label>
+                            	<input class="form-control" name="title" value="${board.title}" readonly="readonly">
                             </div>
                             
                             <div class="form-group">
-                            	<label>content</label>
-                            	<input class="form-control" name="content" value="${board.content}">
+                            	<label>Content</label>
+                            	<input class="form-control" name="content" value="${board.content}" readonly="readonly">
                             </div>
                             
-                            <button data-oper="modify" class="btn btn-dafault"
-                            onclick="location.href='/board/modify?bno=${board.bno}'">modify</button>
+                            <button data-oper="modify" class="btn btn-dafault">Modify</button>
                             
-                            <button data-oper="list" class="btn btn-info"
-                            onclick="location.href='/board/list'">List</button>
+                            <button data-oper="list" class="btn btn-info">List</button>
+                            
+                            <form action="/board/modify" method="get" id="operForm">
+                            	<input type="hidden" id="bno" name="bno" value="${board.bno}">
+                            </form>
+                            
+                            <!-- localhost:8282/board/modify -->
                             
                         </div>
                         <!-- /.panel-body -->
@@ -53,4 +57,27 @@
 
  
  <%@ include file="../includes/footer.jsp"%>
+ 
+<script>
+	$(document).ready(function(){
+		
+		var operForm = $("#operForm")
+		
+		$("button[data-oper='modify']").on("click",function(){
+			operForm.attr("action", "/board/modify").submit();
+		});
+		
+		$("button[data-oper='list']").on("click",function(){
+			operForm.find("#bno").remove();
+			operForm.attr("action", "/board/list").submit();
+		});
+		
+	});
+
+</script>
+ 
+ 
+ 
+ 
+ 
  

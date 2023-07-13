@@ -60,7 +60,7 @@
 							</div>
 
 							<!-- Modal body -->
-							<div class="modal-body">Modal body..</div>
+							<div class="modal-body">처리가 완료 되었습니다.</div>
 
 							<!-- Modal footer -->
 							<div class="modal-footer">
