@@ -198,3 +198,41 @@ web.xml 한글 필터 깨짐 방지 --------------------------------------------
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
+---------------------------------------------------------------------------------------
+JSON 설정  ----test 밑에
+★Maven 에서 Jackson Databind 검색 후 (JSON으로 변환)
+Jackson Databind » 2.15.2   복붙
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+
+★Maven 에서 Jackson Dataformat 검색 후 (xml로 변환하는)
+Jackson Dataformat YAML » 2.15.2 복붙
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-yaml</artifactId>
+    <version>2.15.2</version>
+</dependency>
+
+★Maven 에서 Gson검색 후  (java클래스를 직접 JSON으로 변환하고 싶을때)
+Gson » 2.10.1 복붙
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>
+
+구동순서..?
+web.xml -> ContextLoaderListener -> root-context.xml -> servlet-context.xml
+
+
+
+
+
