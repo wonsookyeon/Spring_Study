@@ -9149,3 +9149,5 @@ org.eclipse.core.runtime.CoreException: Launch configuration JDBCTests (2) refer
 2023-07-19 17:44:07,211 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Works\6.Spring\ex03\src\test\resources
 2023-07-19 17:44:09,781 [Worker-186: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
 2023-07-19 17:44:09,782 [Worker-186: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-07-19 17:44:09,783 [Worker-186: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-07-19 17:44:09,783 [Worker-186: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Works\6.Spring\ex03\src\test\resources
