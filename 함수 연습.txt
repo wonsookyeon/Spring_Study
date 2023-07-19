@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>함수연습</h1>
+
+<script>
+function test(){
+document.write("Hello","<br>");
+document.write("Hello","<br>");
+}
+
+test();
+
+var thefunc = function(){
+    document.write("<br>익명함수","<br>");
+    }
+  
+   thefunc();
+   
+   (function(){
+      var i=0;
+      while(i<10){
+      document.write("즉시 실행 함수:" + i++ + "<br>");
+      }
+   })();
+   
+   
+   //즉시 실행 함수의 변형
+  var fff=(function(){
+   function abc(){
+   document.write("abc");
+      }
+      function bbb(){
+   document.write("bbb");
+   }
+   //return 써줘야 동작함
+   return{
+     aaa:abc,
+     bbb:bbb
+   }
+      
+   })();
+   
+   fff.aaa();
+   fff.bbb();
+   
+
+
+</script>
+</body>
+</html>

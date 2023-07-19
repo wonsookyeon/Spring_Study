@@ -49,7 +49,6 @@
           <input type="hidden" name=keyword value="${cri.keyword}">
         </form>
 
-          </div>
       </div>
       <!-- /.panel-body -->
     </div>
@@ -59,6 +58,55 @@
 </div>
 <!-- /.row -->
 <%@include file="../includes/footer.jsp" %>
+
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+<script>
+	var bnoValue = '${board.bno}';
+/*	//댓글삽입
+	replyService.add(   //js의 function add 실행
+			{reply:"Js Test", replyer : "tester", bno:bnoValue},
+			
+			function(result){
+				alert("result : " + result);
+			}
+	);
+*/	
+
+/*	//댓글 가져오기
+	 replyService.getList({bno:bnoValue}, function(list){
+		for(let i=0, len = list.length || 0 ; i<len; i++){
+			console.log(list[i]);
+		}
+	});
+*/
+
+/*
+	//삭제
+	replyService.remove(21, function(data){
+		
+		if(data === "success")
+			alert("Removed");
+	},	function(err){
+			alert("error");
+	});
+*/
+
+/*
+	//수정
+	replyService.update({rno:23, reply:"reply22업데이트"},
+		function(data){
+			if(data === "success") alert("update 성공");
+	});
+*/
+
+	//가져오기
+	replyService.get(23, function(data){
+		console.log(data);
+		alert(data.rno + " " + data.bno + " " + data.reply);
+	})
+	
+</script>
 
 <script>
   $(document).ready(function (e){
