@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criterial;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -28,20 +29,22 @@ public class ReplyController {
 	
 	private final ReplyService replyService;
 	
-	//댓글등록
+	
+	//댓글등록 //json형태로 요청이 들어오고 클라이언트에게 문자열로 결과값 반환
 	// {"reply" : "Js Test", "replyer" : "tester", "bno" : "bnoValue"}    //결과값(return값)을 평문(문자열)로 전송 ("success")
 	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo){
+		    //상태코드값
 		log.info("ReplyVO : {}", vo);
 		
 		int insertCount = replyService.register(vo);
-		return insertCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
-								: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return insertCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) //200
+								: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR); //500
 		
 	}
 	//select * from tbl_reply where bno=1000
 	//http://localhost:8082/replies/pages/1000/1
-	@GetMapping(value = "/pages/{bno}/{pages}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+/*	@GetMapping(value = "/pages/{bno}/{pages}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<ReplyVO>> getList(@PathVariable("bno") Long bno, @PathVariable("pages") int pages){
         Criterial cri = new Criterial(pages,10);
 
@@ -49,6 +52,19 @@ public class ReplyController {
         
         return new ResponseEntity<>(replyService.getList(cri, bno), HttpStatus.OK);
     }
+*/
+	
+	@GetMapping(value = "/pages/{bno}/{pages}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<ReplyPageDTO> getList(@PathVariable("bno") Long bno, @PathVariable("pages") int pages){
+        Criterial cri = new Criterial(pages,10);
+
+        log.info("bno: {}, pages: {}", bno, pages);
+        
+        return new ResponseEntity<>(replyService.getListPage(cri, bno), HttpStatus.OK);
+    }
+	
+	
+	
 	
 	//삭제하기 //postman에 delete로 놓고 확인
 	//http://localhost:8082/replies/10

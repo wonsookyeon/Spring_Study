@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@include file="../includes/header.jsp" %>
@@ -31,12 +31,14 @@
                     </thead>
                     <c:forEach items="${list}" var="board">
                         <tr>
-                            <td>${board.bno}</td>
-                           <td><a class='move' href='${board.bno}'>${board.title}</a></td>
+                            <td><c:out value="${board.bno}"></c:out></td>
+                           <td><a href='/board/get?bno=${board.bno}'> ${board.title} </a></td>
                            <%-- <td><a href='/board/get?bno=${board.bno}'>${board.title}</a></td>--%>
                             <td>${board.writer}</td>
-                            <td>${board.regdate}</td>
-                            <td>${board.updatedate}</td>
+                            <td><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${board.regdate}" /></td>
+                            <td><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${board.updatedate}" /></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -96,7 +98,7 @@
                 <!-- 페이징 처리 끝-->
 
 
-                <!-- The Modal -->
+                <!-- The Modal Start -->
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -120,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- The Modal -->
+                <!-- The Modal 끝 -->
             </div>
             <!-- /.panel-body -->
         </div>

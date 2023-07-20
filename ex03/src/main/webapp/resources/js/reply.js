@@ -102,6 +102,34 @@
             }
         });
      } // get end
+
+     function displayTime(timeValue){
+        var today = new Date();
+
+        var gap = today.getTime() - timeValue;
+
+        var dateObj = new Date(timeValue);
+
+        var str = "";
+
+        if(gap < (1000 * 60 * 60 * 24)) { //gap 차이가 하루가 지나면
+            var hh = dateObj.getHours();
+            var mi = dateObj.getMinutes();
+            var ss = dateObj.getSeconds();
+
+                    //두자리수 표기 01~09
+            return [(hh>9 ? '' : '0') + hh , ':' ,
+                    (mi>9 ? '' : '0') + mi , ':' , 
+                    (ss>9 ? '' : '0') + ss
+                ].join('');
+            }else{
+                var yy = dateObj.getFullYear();
+                var mm = dateObj.getMonth() + 1; // getMonth() -> zero-based
+                var dd = dateObj.getDate();
+
+                return [yy, '/', (mm>9? '' : '0') + mm, '/', (dd>9? '': '0') + dd].join('');
+            }
+        };
      
 
      return{
@@ -109,7 +137,8 @@
         getList : getList,
         remove : remove,
         update : update,
-        get : get
+        get : get,
+        displayTime : displayTime
     };
     
     })();

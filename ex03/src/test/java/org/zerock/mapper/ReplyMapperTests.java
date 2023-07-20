@@ -76,7 +76,21 @@ public class ReplyMapperTests {
 		});
 	}
 	
-
+	// 댓글 1페이지에 있는 댓길 5개 보기
+	@Test
+	public void testList2() {
+		Criterial cri = new Criterial(1,5); //1페이지에 5개
+		//bno = 7340052
+		
+		List<ReplyVO> replies= replyMapper.getListWithPaging(cri, 7340052L);
+		replies.forEach(n->log.info("list : {}", n));
+	}
+	
+	//댓글 몇건인지
+	@Test
+	public void testCount() {
+		log.info("count : {}", replyMapper.getCountByBno(7340052L));
+	}
 
 	
 	
