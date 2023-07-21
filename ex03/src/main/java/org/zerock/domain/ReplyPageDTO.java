@@ -11,7 +11,7 @@ import lombok.Setter;
 public class ReplyPageDTO {
 	
 	private final int replyCnt;
-	private final List<ReplyVO> vo;
+	private final List<ReplyVO> list;
 	
 
 }

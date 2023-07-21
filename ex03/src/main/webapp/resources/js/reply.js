@@ -33,17 +33,18 @@
      } //add end
 
      //댓글 리스트 가져오기 bno
-     function getList(param, callback, error){
+     function getList(param, callback, error) {
         let bno = param.bno;
-        let page = param.page || 1;  //page 값 없으면 1
-    
+        let page = param.page || 1; //page가 없으면 1
+
         $.ajax({
+
             type : "get",
             url : "/replies/pages/" + bno + "/" + page,
-    
+
             success : function(result, status, xhr){
                 if(callback){
-                    callback(result);
+                    callback(result.replyCnt, result.list);
                 }
             },
             error : function(xhr, status, er){
@@ -51,8 +52,8 @@
                     error(er);
                 }
             }
-        });
-     } //getList end
+        })
+    } //getList end
 
      //댓글삭제
      function remove(rno, callback, error){

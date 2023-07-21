@@ -83,8 +83,11 @@
 				</ul>
 			</div>
 			<!-- /.panel-body -->
+			
 		</div>
 		<!-- /.panel -->
+		<div class="panel-footer">
+		</div>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -151,7 +154,13 @@
       
       function showList(page){
 
-			replyService.getList({bno : bnoValue, page : page || 1}, function(list){
+			replyService.getList({bno : bnoValue, page : page || 1}, function(replyCnt, list){
+				
+				if(page == -1){
+					pageNum = Math.ceil(replyCnt / 10.0);
+					showList(pageNum);
+					return;
+				}
 				var str="";
 	            if(list == null || list.length == 0){
 	               replyUL.html("");
@@ -169,6 +178,8 @@
 	            }
 	            replyUL.html(str);
 	            
+	            showReplyPage(replyCnt);
+	            
 	         }); // function end
 		} //showList end
 		
@@ -182,7 +193,7 @@
 	    var modalRegisterBtn = $("#modalRegisterBtn");
 		
 		   //ID
-		$("#addReplyBtn").on("click", function(){
+		$("#addReplyBtn").on("click", function(e){
 			
 			modal.find("input").val("");
 			modalInputReplyDate.closest("div").hide(); // ReplyDate div 숨기기
@@ -190,8 +201,8 @@
 			
 			modalRegisterBtn.show(); // 등록버튼 보여주기
 			
-			$(".modal").modal("show");
-			//modal.modal("show");
+			//$(".modal").modal("show");
+			modal.modal("show");
 			
 		}); //Modal Show
 		
@@ -208,7 +219,8 @@
 				modal.find("input").val("");
 				modal.modal("hide");
 				
-				showList(1); //댓글화면 재생성
+				//showList(1); //댓글화면 재생성
+				showList(-1); //마지막페이지 보여주세요.
 			});
 		}); //등록
 		
@@ -243,7 +255,7 @@
 				
 				alert("수정 성공");
 				modal.modal("hide");
-				showList(1);
+				showList(pageNum);
 			});
 			
 		});
@@ -257,15 +269,61 @@
 				
 				alert("삭제 성공");
 				modal.modal("hide");
-				showList(1);
+				showList(pageNum);
 			});
 			
-		});
+		}); //삭제 end
 		
-		   
-		   
-		
-	});
+		var pageNum= 1;
+        var replyPageFooter =$(".panel-footer");
+
+        function showReplyPage(replyCnt){ 
+            var endNum = Math.ceil(pageNum /10.0)*10;
+            var startNum = endNum-9; //시작페이지 1
+
+            var prev = startNum != 1; //false
+            var next = false;
+
+            if(endNum * 10 > replyCnt){
+                endNum = Math.ceil(replyCnt/10.0);
+            }
+
+            if(endNum * 10 < replyCnt){
+                next = true;
+            }
+
+            var str = "<ul class='pagination pull-right'>";
+
+            if(prev){
+                str += "<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>Previous</a></li>";
+            }
+
+            for(var i=startNum; i<=endNum; i++){
+                var active = pageNum == i ? "active" : "";
+                str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+
+            }
+
+            if(next){
+                str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+
+            }
+                str += "</ul>";
+            console.log(str);
+            replyPageFooter.html(str);
+        }
+        
+        replyPageFooter.on("click","li a",function(e){
+        	e.preventDefault();
+        	var targetPageNum = $(this).attr("href");
+        	
+        	pageNum = targetPageNum;
+        	
+        	showList(pageNum);
+        });
+
+    });
+	
 	
 /*	//댓글삽입
 	replyService.add(   //js의 function add 실행

@@ -233,6 +233,18 @@ Gson » 2.10.1 복붙
 web.xml -> ContextLoaderListener -> root-context.xml -> servlet-context.xml
 
 
+----------------------------------------------------------------------------------------------------------------
+★Maven 에서 AspectJ 검색 후
+AspectJ Weaver » 1.9.19
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+	<groupId>org.aspectj</groupId>
+	<artifactId>aspectjweaver</artifactId>
+	<version>1.9.19</version>
+	<scope>runtime</scope>
+</dependency>
+
+
 
 
 

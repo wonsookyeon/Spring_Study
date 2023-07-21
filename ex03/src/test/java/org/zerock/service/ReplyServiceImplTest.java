@@ -26,7 +26,7 @@ public class ReplyServiceImplTest {
 		ReplyPageDTO dto = replyService.getListPage(cri, 7340052L);
 		
 		log.info("cnt : {}", dto.getReplyCnt());
-		log.info("list : {}", dto.getVo());
+		log.info("list : {}", dto.getList());
 	}
 	
 
