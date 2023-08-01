@@ -64,12 +64,12 @@ class BoardRepositoryTests {
 
     }
 
-    @Test
-    public void testTitle(){
-        String title = "title20";
-        Board byTitle = boardRepository.findByTitle(title);
-        log.info(byTitle);
-    }
+//    @Test
+//    public void testTitle(){
+//        String title = "title20";
+//        Board byTitle = boardRepository.findByTitle(title);
+//        log.info(byTitle);
+//    }
 
     @Test
     public void testWriter() {
@@ -119,19 +119,19 @@ class BoardRepositoryTests {
                 board-> log.info("board: " + board)
         );
     }
-/*
-    @Test
+
+   /* @Test
     public void testQuery2(){
         boardRepository.findByWriterDetail2("2", "2").forEach(
                 board-> log.info(Arrays.toString(board))
         );
     }
-*/
+
     @Test
     public void testKeywordPage(){
         Pageable pageable = PageRequest.of(1, 5, Sort.by("bno").descending());
 
-        Page<Board> page = boardRepository.findKeyword("2", pageable);
+        Page<Board> page = boardRepository.findKeyWord("2", pageable);
 
         log.info("page : " + page.getTotalPages()); //총 페이지 수
         log.info("page : " + page.getTotalElements()); //총 데이터 수
@@ -149,14 +149,14 @@ class BoardRepositoryTests {
 
     @Test
     public void testByTitle() {
-        boardRepository.findByTitle2("2")
-                .forEach(board-> log.info("board: " + board)
+        boardRepository.findByTitle("2").forEach(
+                board-> log.info("board: " + board)
         );
-    }
+    }*/
 
     @Test
     public void testByTitle2() {
-        boardRepository.findByTitle3("3").forEach(
+        boardRepository.findByTitle2("3").forEach(
                 board-> log.info("board: " + board)
         );
     }

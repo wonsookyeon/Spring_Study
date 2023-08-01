@@ -14,13 +14,11 @@ import java.util.List;
 public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
 
     public BoardSearchImpl(){
-
         super(Board.class);
     }
 
     @Override
     public Page<Board> search1(Pageable pageable) {
-
         QBoard board = QBoard.board; //Q도메인 객체
         JPQLQuery<Board> query = from(board); //select * from board
         query.where(board.title.contains("1")); //where title like "%" + 1 + "%"
@@ -35,15 +33,16 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         return new PageImpl<>(list, pageable, count);
     }
 
-    @Override
+    @Override                       //tcw           java          0,10,bno,desc
     public Page<Board> searchAll(String[] types, String keyword, Pageable pageable) {
-
         QBoard board = QBoard.board;
         JPQLQuery<Board> query = from(board);
 
-        if ((types != null && types.length > 0) && keyword != null){ //검색 조건과 키워드가 있다면
-
-            BooleanBuilder booleanBuilder = new BooleanBuilder();
+        //select * from board
+        // where
+        //(title = %java% or content = %java% or writer = %java%);
+        if( (types != null && types.length > 0) && keyword != null ){ //검색 조건과 키워드가 있다면
+            BooleanBuilder booleanBuilder = new BooleanBuilder(); // (
 
             for(String type: types){
                 switch (type){
@@ -51,28 +50,34 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                         booleanBuilder.or(board.title.contains(keyword));
                         break;
                     case "c":
-                        booleanBuilder.or(board.title.contains(keyword));
+                        booleanBuilder.or(board.content.contains(keyword));
                         break;
                     case "w":
-                        booleanBuilder.or(board.title.contains(keyword));
+                        booleanBuilder.or(board.writer.contains(keyword));
                         break;
-
                 }
             }//end for
             query.where(booleanBuilder);
         }//end if
 
         //bno > 0
-        query.where(board.bno.gt(0L));
-        //paging
+        query.where(board.bno.gt(0L));  //gt => 크거나 같다
+        //select * from board
+        // where
+        //(title = %java% or content = %java% or writer = %java%)
+        // and bno > 0L;
 
+        System.out.println("query ==> " + query);
+
+        //paging                           0page, 10개, bno.desc
         this.getQuerydsl().applyPagination(pageable, query);
 
-        List<Board> list = query.fetch();
+        List<Board> list = query.fetch(); //25건 가져와서 리스트에 담기
 
-        Long count = query.fetchCount();
+        long count = query.fetchCount(); //25건
 
-        return null;
+        return new PageImpl<>(list, pageable, count); //객체생성해서 넘겨주기
+        //BoardServiceImpl 69번째줄 result로
     }
 
 }

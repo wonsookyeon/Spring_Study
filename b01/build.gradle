@@ -50,9 +50,7 @@ dependencies {
 	)
 
 	//ModelMapper 설정
-	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
-	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
-
+	implementation 'org.modelmapper:modelmapper:3.1.0'
 
 }
 
@@ -67,3 +65,5 @@ sourceSets {
 		}
 	}
 }
+//QBase 에러날 때
+compileJava.dependsOn('clean')
