@@ -93,14 +93,14 @@ class BoardRepositoryTests {
     }
 
     @Test
-    public void testLike() {
+    public void testLike() { //파라미터에 직접 '%user%'를 넣어줘야 user를 포함 한 단어를 찾아준다.
         boardRepository.findByWriterLike("%user%").forEach(
                 board-> log.info("board: " + board)
         );
     }
 
     @Test
-    public void testContaining() {
+    public void testContaining() { //파라미터에 직접 '%test%'를 넣어줄 필요가 없다.
         boardRepository.findByWriterContaining("user").forEach(
                 board-> log.info("board: " + board)
         );
