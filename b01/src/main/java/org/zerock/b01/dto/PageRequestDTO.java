@@ -22,7 +22,7 @@ public class PageRequestDTO {
     private int page = 1; //1page
 
     @Builder.Default
-    private int size = 10; //10개
+    private int size = 5; //10개
 
     private String type; //검색 t,c,w,tc,tw,tcw ==> tcw
     private String keyword; //검색 단어  ==> java , 1

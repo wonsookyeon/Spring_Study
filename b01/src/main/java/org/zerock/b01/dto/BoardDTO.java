@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,10 +19,14 @@ public class BoardDTO {
 
     private Long bno;
 
+    @NotEmpty //공란,null값 허용 X
+    @Size(min=3, max=100)
     private String title;
 
+    @NotEmpty
     private String content;
 
+    @NotEmpty
     private String writer;
 
     private LocalDateTime regDate;

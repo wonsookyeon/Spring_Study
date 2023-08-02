@@ -119,14 +119,14 @@ class BoardRepositoryTests {
                 board-> log.info("board: " + board)
         );
     }
-/*
-    @Test
-    public void testQuery2(){
-        boardRepository.findByWriterDetail2("2", "2").forEach(
-                board-> log.info(Arrays.toString(board))
-        );
-    }
-*/
+    /*
+        @Test
+        public void testQuery2(){
+            boardRepository.findByWriterDetail2("2", "2").forEach(
+                    board-> log.info(Arrays.toString(board))
+            );
+        }
+    */
     @Test
     public void testKeywordPage(){
         Pageable pageable = PageRequest.of(1, 5, Sort.by("bno").descending());
@@ -151,7 +151,7 @@ class BoardRepositoryTests {
     public void testByTitle() {
         boardRepository.findByTitle2("2")
                 .forEach(board-> log.info("board: " + board)
-        );
+                );
     }
 
     @Test
