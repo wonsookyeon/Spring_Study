@@ -1,0 +1,91 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+    <meta charSet="UTF-8">
+<!--   <link rel="stylesheet" href="/style.css">-->
+    <title>친구목록</title>
+
+</head>
+<body>
+<div>
+    <h1 className="con" style="margin-top: 100px; text-align: center">친구 목록</h1>
+    <br/>
+    <div align="right" >
+        <button onClick="location.href='./register'" style="margin-right: 300px">
+            친구추가
+        </button>
+    </div>
+</div>
+<br/>
+<div>
+
+<!--    <section className="article-list table-common con">-->
+        <table border="1" width="1100" align="center">
+            <thead>
+            <tr>
+                <th width="50">#</th>
+                <th width="200">이름</th>
+                <th width="200">번호</th>
+                <th width="200">주소</th>
+                <th width="300">이메일</th>
+            </tr>
+            </thead>
+            <tbody align="center" th:with="link=${pageRequestDTO.getLink()}">
+            <tr th:each="friends : ${responseDTO.dtoList}">
+                <th scope="row">[[${friends.fno}]]</th>
+                <td>
+                    <a th:href="|@{/read(fno=${friends.fno})}&${link}|">[[${friends.name}]]</a>
+                </td>
+                <td th:text="${friends.phone}"></td>
+                <td th:text="${friends.address}"></td>
+                <td th:text="${friends.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+<!--    </section>-->
+
+<!--    <div className="float-end">-->
+<!--        <ul className="pagination flex-wrap">-->
+<!--            <li className="page-item" th:if="${responseDTO.prev}">-->
+<!--                <a className="page-link" th:data-num="${responseDTO.start -1}">Previous</a>-->
+<!--            </li>-->
+
+<!--            <th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">-->
+<!--                <li th:class="${responseDTO.page == i}?'page-item active':'page-item'">-->
+<!--                    <a className="page-link" th:data-num="${i}">[[${i}]]</a>-->
+<!--                </li>-->
+<!--            </th:block>-->
+
+<!--            <li className="page-item" th:if="${responseDTO.next}">-->
+<!--                <a className="page-link" th:data-num="${responseDTO.end + 1}">Next</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+</div>
+
+</body>
+
+
+<script layout:fragment="script" th:inline="javascript">
+
+    //페이지 버튼 눌렀을때 페이지 변경
+    document.querySelector(".pagination").addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const target = e.target;
+
+        if (target.tagName !== 'A') {
+            return;
+        }
+        const num = target.getAttribute("data-num");
+        const formObj = document.querySelector("form");
+        formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`;
+        formObj.submit();
+    }, false);
+
+</script>
+
+</html>
